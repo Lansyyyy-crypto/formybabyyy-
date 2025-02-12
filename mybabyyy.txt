@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playful Valentine's Day Proposal</title>
+    <style>
+        body {
+            background-color: white;
+            color: #ff4d94;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            display: inline-block;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .first-section, .second-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message {
+            font-size: 32px;
+            line-height: 1.3;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .button {
+            background-color: #ff4d94;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ff1a75;
+            transform: scale(1.1);
+        }
+
+        .heart {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            font-size: 30px;
+            animation: floatHearts 3s infinite ease-in-out;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-100px); opacity: 0.5; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .heart:nth-child(1) {
+            animation-delay: 0s;
+            left: 10%;
+        }
+
+        .heart:nth-child(2) {
+            animation-delay: 1s;
+            left: 40%;
+        }
+
+        .heart:nth-child(3) {
+            animation-delay: 2s;
+            left: 70%;
+        }
+
+        .second-section {
+            display: none;
+            text-align: center;
+        }
+
+        .no-message {
+            margin-top: 20px;
+            font-size: 24px;
+            line-height: 1.4;
+            color: #f1c6d7;
+            font-weight: bold;
+        }
+
+        .yes-big {
+            transform: scale(1.5);
+        }
+
+        .yes-bigger {
+            transform: scale(2);
+        }
+
+        .yes-even-bigger {
+            transform: scale(3);
+        }
+
+        .yes-max {
+            transform: scale(5);
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .gif-container {
+            display: inline-block;
+            margin-top: 20px;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- First Section: Asking the question -->
+        <div class="first-section">
+            <img class="dino" src="https://i.imgur.com/vY85MCP.gif" alt="Dino holding a flower">
+            <div class="message">Will you be my Valentine?</div>
+            <button class="button" id="yesBtn" onclick="respondYes()">Yes</button>
+            <button class="button" id="noBtn" onclick="respondNo()">No</button>
+        </div>
+
+        <!-- Second Section: After "Yes" -->
+        <div class="second-section">
+            <div class="message">YEEEEEY!! I love youuuusm, my honeybunch^^</div>
+            <!-- Replace Dino GIF with the new GIF -->
+            <div class="gif-container">
+                <img src="https://media2.giphy.com/media/NxC8VtyxqhMtpLoEEN/giphy.gif?cid=6c09b952t58y1x02ff33h64qe5ukjcvhccjaykplcsyphz61&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="Cute Gif">
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+    <div class="heart">💝</div>
+
+    <script>
+        let noCount = 0;
+        const messages = [
+            "Oh no, don’t say No, just say Yes!",
+            "Really? Are you sure you want to say No?",
+            "You can't say No to this cute Dino!",
+            "Hmm... are you sure? Just say Yes!",
+            "Come on... Just say Yes!",
+            "Don’t make me beg, pick Yes!",
+            "Please... Pick Yes!"
+        ];
+
+        function respondYes() {
+            // Hide the first section and show the second section
+            document.querySelector('.first-section').style.display = 'none';
+            document.querySelector('.second-section').style.display = 'block';
+        }
+
+        function respondNo() {
+            // Increase No count and change the message
+            noCount++;
+
+            // Change the message on the No button
+            if (noCount < messages.length) {
+                document.getElementById('noBtn').textContent = messages[noCount];
+            } else {
+                document.getElementById('noBtn').textContent = "Come on... Just say Yes!";
+            }
+
+            // Make Yes button grow gradually based on how many times No has been clicked
+            if (noCount > 5) {
+                document.getElementById('yesBtn').classList.add('yes-max');
+            } else if (noCount > 3) {
+                document.getElementById('yesBtn').classList.add('yes-even-bigger');
+            } else if (noCount > 2) {
+                document.getElementById('yesBtn').classList.add('yes-bigger');
+            } else if (noCount > 0) {
+                document.getElementById('yesBtn').classList.add('yes-big');
+            }
+        }
+    </script>
+
+</body>
+</html>
